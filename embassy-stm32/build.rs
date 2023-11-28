@@ -183,14 +183,19 @@ fn main() {
 
     let time_driver_singleton = match time_driver.as_ref().map(|x| x.as_ref()) {
         None => "",
+        Some("tim1") => "TIM1",
         Some("tim2") => "TIM2",
         Some("tim3") => "TIM3",
         Some("tim4") => "TIM4",
         Some("tim5") => "TIM5",
         Some("tim12") => "TIM12",
         Some("tim15") => "TIM15",
+        Some("tim16") => "TIM16",
+        Some("tim17") => "TIM17",
         Some("any") => {
-            if singletons.contains(&"TIM2".to_string()) {
+            if singletons.contains(&"TIM1".to_string()) {
+                "TIM1"
+            } else if singletons.contains(&"TIM2".to_string()) {
                 "TIM2"
             } else if singletons.contains(&"TIM3".to_string()) {
                 "TIM3"
@@ -202,8 +207,12 @@ fn main() {
                 "TIM12"
             } else if singletons.contains(&"TIM15".to_string()) {
                 "TIM15"
+            } else if singletons.contains(&"TIM16".to_string()) {
+                "TIM16"
+            } else if singletons.contains(&"TIM17".to_string()) {
+                "TIM17"
             } else {
-                panic!("time-driver-any requested, but the chip doesn't have TIM2, TIM3, TIM4, TIM5, TIM12 or TIM15.")
+                panic!("time-driver-any requested, but the chip doesn't have TIM1, TIM2, TIM3, TIM4, TIM5, TIM12, TIM15, TIM16, or TIM17.")
             }
         }
         _ => panic!("unknown time_driver {:?}", time_driver),
