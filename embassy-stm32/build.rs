@@ -193,9 +193,8 @@ fn main() {
         Some("tim16") => "TIM16",
         Some("tim17") => "TIM17",
         Some("any") => {
-            if singletons.contains(&"TIM1".to_string()) {
-                "TIM1"
-            } else if singletons.contains(&"TIM2".to_string()) {
+            // TIM2 must be first, ensuring it is the default selection for "any"
+            if singletons.contains(&"TIM2".to_string()) {
                 "TIM2"
             } else if singletons.contains(&"TIM3".to_string()) {
                 "TIM3"
@@ -211,6 +210,8 @@ fn main() {
                 "TIM16"
             } else if singletons.contains(&"TIM17".to_string()) {
                 "TIM17"
+            } else if singletons.contains(&"TIM1".to_string()) {
+                "TIM1"
             } else {
                 panic!("time-driver-any requested, but the chip doesn't have TIM1, TIM2, TIM3, TIM4, TIM5, TIM12, TIM15, TIM16, or TIM17.")
             }
